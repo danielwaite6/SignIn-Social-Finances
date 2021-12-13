@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "login_social",
+    "slug": "login_social",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "login_social"
+}
