@@ -5,7 +5,7 @@ import { useFonts, Poppins_400Regular, Poppins_500Medium, Poppins_700Bold } from
 import { Routes } from './src/routes';
 import theme from './src/global/styles/theme';
 
-import { AuthContext } from './src/AuthContext';
+import { AuthProvider } from './src/hooks/auth';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -16,9 +16,9 @@ export default function App() {
   }
   return (
     <ThemeProvider theme={theme}>
-      <AuthContext.Provider value={[]}>
+      <AuthProvider>
         <Routes />
-      </AuthContext.Provider>
+      </AuthProvider>
     </ThemeProvider>
   )
 

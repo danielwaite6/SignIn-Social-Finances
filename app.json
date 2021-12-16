@@ -2,6 +2,7 @@
   "expo": {
     "name": "login_social",
     "slug": "login_social",
+    "scheme": "login_social",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
