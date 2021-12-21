@@ -1,12 +1,14 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Dashboard } from '../screens/Dashboard';
+
+import { SignIn } from '../screens/SignIn'
+
 const { Navigator, Screen } = createStackNavigator();
 
-export function StackRoutes() {
+export function AuthRoutes() {
     return (
         <Navigator headerMode="none" /**initialRouteName="Splash" */>
-            <Screen name="Dashboard" component={Dashboard} />
+            <Screen name="SignIn" component={SignIn} />
         </Navigator>
     )
 }

@@ -1,5 +1,8 @@
-import React, { createContext, ReactNode, useContext } from 'react';
+import React, { createContext, ReactNode, useContext, useState } from 'react';
 import * as AuthSession from 'expo-auth-session';
+
+const { CLIENT_ID } = process.env;
+const { REDIRECT_URI } = process.env;
 
 interface AuthProviderProps {
     children: ReactNode;
@@ -29,17 +32,12 @@ const AuthContext = createContext({} as IAuthContextData);
 
 function AuthProvider({ children }: AuthProviderProps) {
 
-    const user = {
-        id: '123123',
-        name: 'Daniel',
-        email: 'danielwaite6@hotmail.com',
-    }
+    const [user, setUser] = useState<User>({} as User);
 
     async function signInWithGoogle() {
         try {
 
-            const CLIENT_ID = '298826031454-ars93v3jehqoajut08srrdfm3bapsfur.apps.googleusercontent.com';
-            const REDIRECT_URI = 'https://auth.expo.io/@danielwaite6/login_social';
+
             const RESPONSE_TYPE = 'token';
             const SCOPE = encodeURI('profile email');
 
@@ -51,6 +49,14 @@ function AuthProvider({ children }: AuthProviderProps) {
                 const response = await fetch(`https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${params.access_token}`);
                 const userinfo = await response.json();
                 console.log(userinfo);
+
+
+                setUser({
+                    id: userinfo.id,
+                    email: userinfo.email,
+                    name: userinfo.given_name,
+                    photo: userinfo.picture,
+                });
             }
 
 
